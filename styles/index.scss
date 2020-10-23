@@ -1,0 +1,77 @@
+// Declare variables
+$font-stack: "Montserrat", sans-serif;
+$primary-color: rgb(206, 252, 206);
+$primary-text-color: rgb(21, 95, 21);
+
+// CSS RESETS
+* {
+  margin: 0;
+  padding: 0;
+  &,
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
+html {
+  min-width: fit-content;
+}
+// MAIN STYLES
+body {
+  @extend html;
+  font-family: $font-stack;
+  background-color: $primary-color;
+  text-align: center;
+}
+main {
+  // Mainly for mobile devices, to center the map on the screen
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.875rem;
+  h1 {
+    color: $primary-text-color;
+    text-decoration: underline;
+  }
+  .svg-container {
+    // margin: auto to center map on the screen
+    margin: auto;
+    height: fit-content;
+    .map {
+      .svg-path {
+        fill: $primary-text-color;
+        stroke: rgb(78, 167, 78);
+        // Remove blue square box on mobile phones when tapped
+        -webkit-tap-highlight-color: transparent;
+        &:hover {
+          cursor: pointer;
+          fill: rgb(7, 80, 7);
+        }
+      }
+    }
+  }
+}
+// Tooltip styling
+.map-tooltip {
+  position: absolute;
+  display: none;
+  border-radius: 3px;
+  border: 1px solid #d3d3d3;
+  background-color: white;
+  color: $primary-text-color;
+  font-family: $font-stack;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  // The pointer-events CSS property sets under what circumstances (if any) a particular graphic element can become the target of pointer events.
+  pointer-events: none;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+// Media query at 540px
+@media (max-width: 33.75em) {
+  h1 {
+    font-size: 3rem;
+  }
+}
